@@ -13,7 +13,7 @@ public class PO1_JDBCIntro {
 
 
     @Test
-    void task1() throws SQLException {
+   public void task1() throws SQLException {
 
         //create a connection
         //driver manager class getConnection Method will help to connect database
@@ -27,10 +27,32 @@ public class PO1_JDBCIntro {
         ResultSet rs = statement.executeQuery("select * from DEPARTMENTS where MANAGER_ID is not null"); //option + enter(return) --> give the option to crate variables
         //press command + enter to "("select *from REGIONS")" tp choose to run the quire from
 
+        //10-Administration-200-1700
+    while (rs.next()){
+
+        System.out.println(rs.getString(1) + " - " + rs.getString(2) + " - "+
+        rs.getString(3) + " - " + rs.getString(4));
+    }
+
+
+
+    //can we run another query in same connection
+
+        rs = statement.executeQuery("select * from LOCATIONS");
+
+        System.out.println("________________________________________");
+
+    //1297 Via Cola di Rie
+        while (rs.next()){
+            System.out.println(rs.getString(2) + " - " + rs.getString(4));
+        }
+
+
 
         //close connection
         rs.close();
         statement.close();
         conn.close();
     }
+
 }
